@@ -2,6 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\LoginController;
+use App\Http\Controllers\API\LogoutController;
+use App\Http\Controllers\API\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,10 +17,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-Route::get('/test', function () {
-    return response()->json("hello world");
+Route::prefix('v1')->group(function () {
+    Route::prefix('auth')->name('auth.')->group(function () {
+        Route::post('register', [RegisterController::class, 'store'])->name('store');
+        Route::post('login', [LoginController::class, 'login'])->name('login');
+    });
 });
