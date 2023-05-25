@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\LogoutController;
+use App\Http\Controllers\API\PurchaseController;
 use App\Http\Controllers\API\RegisterController;
 
 /*
@@ -22,5 +23,11 @@ Route::prefix('v1')->group(function () {
     Route::prefix('auth')->name('auth.')->group(function () {
         Route::post('register', [RegisterController::class, 'store'])->name('store');
         Route::post('login', [LoginController::class, 'login'])->name('login');
+    });
+
+    Route::group(['middleware' => ['auth:sanctum']], function () {
+        Route::prefix('purchase')->name('purchase.')->group(function () {
+            Route::post('', [PurchaseController::class, 'store'])->name('store');
+        });
     });
 });

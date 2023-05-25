@@ -98,6 +98,6 @@ class Handler extends ExceptionHandler
             return $this->formValidationErrorAlert($exception->errors());
         }
 
-        return $this->serverErrorAlert('An error occurred processing your request, Try again later... ', $exception);
+        //return $this->serverErrorAlert('An error occurred processing your request, Try again later... ', $exception);
     }
 }
