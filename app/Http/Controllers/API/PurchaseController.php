@@ -14,6 +14,6 @@ class PurchaseController extends Controller
     {
         $purchase = (new PurchaseAction($eventService))->execute($request);
 
-        return $this->successResponse("Purchase successful", $purchase);
+        return $this->createdResponse("Purchase successful", $purchase);
     }
 }

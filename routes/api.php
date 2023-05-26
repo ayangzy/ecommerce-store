@@ -30,6 +30,7 @@ Route::prefix('v1')->group(function () {
         Route::prefix('purchase')->name('purchase.')->group(function () {
             Route::post('', [PurchaseController::class, 'store'])->name('store');
         });
+        Route::post('logout', [LogoutController::class, 'logout']);
 
         Route::get('banks', [BankController::class, 'getBank']);
         Route::post('add-bank-details', [BankController::class, 'addBankDetail']);
