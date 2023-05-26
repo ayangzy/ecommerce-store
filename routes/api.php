@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\API\BadgeController;
-use App\Http\Controllers\API\BankController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\BankController;
+use App\Http\Controllers\API\BadgeController;
 use App\Http\Controllers\API\LoginController;
 use App\Http\Controllers\API\LogoutController;
 use App\Http\Controllers\API\PurchaseController;
 use App\Http\Controllers\API\RegisterController;
+use App\Http\Controllers\API\AchievementApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,14 @@ Route::prefix('v1')->group(function () {
         Route::get('/{badge}', [BadgeController::class, 'show'])->name('show');
         Route::patch('/{badge}', [BadgeController::class, 'update'])->name('update');
         Route::delete('/{badge}', [BadgeController::class, 'destroy'])->name('destroy');
+    });
+
+    Route::prefix('achievements')->name('achievement.')->group(function () {
+        Route::get('/', [AchievementApiController::class, 'index'])->name('index');
+        Route::post('/', [AchievementApiController::class, 'store'])->name('store');
+        Route::get('/{achievement}', [AchievementApiController::class, 'show'])->name('show');
+        Route::patch('/{achievement}', [AchievementApiController::class, 'update'])->name('update');
+        Route::delete('/{achievement}', [AchievementApiController::class, 'destroy'])->name('destroy');
     });
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
