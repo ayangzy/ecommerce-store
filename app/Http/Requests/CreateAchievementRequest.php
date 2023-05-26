@@ -24,7 +24,7 @@ class CreateAchievementRequest extends FormRequest
     {
         return [
             'achievement_name' => 'required|string|max:50|min:2|unique:achievements,achievement_name',
-            'achievement_group' => 'required|max:50|min:2|in:' . AchievementGroupEnum::PURCHASE . ',' . AchievementGroupEnum::COMMENT_MADE . ',' . AchievementGroupEnum::LESSON_WATCHED,
+            'achievement_group' => 'required|max:50|min:2|in:' . AchievementGroupEnum::PURCHASE,
             'description' => 'nullable|string|max:255',
             'required_count' => 'required|integer|min:0'
         ];
