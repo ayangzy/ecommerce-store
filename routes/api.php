@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\BankController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\LoginController;
@@ -29,5 +30,9 @@ Route::prefix('v1')->group(function () {
         Route::prefix('purchase')->name('purchase.')->group(function () {
             Route::post('', [PurchaseController::class, 'store'])->name('store');
         });
+
+        Route::get('banks', [BankController::class, 'getBank']);
+        Route::post('add-bank-details', [BankController::class, 'addBankDetail']);
+        Route::post('transfer', [BankController::class, 'transfer']);
     });
 });

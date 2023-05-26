@@ -282,9 +282,8 @@
                                     </h3>
                                 </td>
                                 <td class="table-data">
-                                    Congratulations! You have earned the <b> {{ $data['badge_name'] }} badge</b> . This badge
-                                    signifies your achievements and progress in our system.
-
+                                    Congratulations! You have earned the <b> {{ $data['badge_name'] }} badge</b> and <b>300 Naira</b> has been deposited into your account as a reward.
+                                    This badge signifies your achievements and progress in our system.
                                     Keep up the great work! Thank you for being a valued member of our community.
                                 </td>
 

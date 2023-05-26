@@ -6,10 +6,13 @@ use Throwable;
 use App\Traits\ApiResponses;
 use App\Exceptions\NotFoundException;
 use Psy\Exception\FatalErrorException;
+use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\UnauthorizedException;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpFoundation\Exception\BadRequestException;
@@ -98,6 +101,8 @@ class Handler extends ExceptionHandler
             return $this->formValidationErrorAlert($exception->errors());
         }
 
-        //return $this->serverErrorAlert('An error occurred processing your request, Try again later... ', $exception);
+        if ($exception instanceof RouteNotFoundException) {
+            return $this->unauthorisedRequestAlert("Unauthenticated");
+        }
     }
 }

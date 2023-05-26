@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('phone_number');
             $table->text('address')->nullable();
             $table->foreignId('country_id')->nullable()->constrained('countries');
+            $table->decimal('balance', 8, 2)->default(0.00);
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
