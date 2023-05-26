@@ -3,14 +3,10 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\BankDetail;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use App\Services\PaystackPaymentService;
-use App\Http\Requests\CreateRecipientRequest;
 use App\Http\Requests\CreateBankDetailRequest;
-use App\Http\Requests\VerifyBankAccountRequest;
-
 
 class BankController extends Controller
 {

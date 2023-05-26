@@ -33,6 +33,5 @@ Route::prefix('v1')->group(function () {
 
         Route::get('banks', [BankController::class, 'getBank']);
         Route::post('add-bank-details', [BankController::class, 'addBankDetail']);
-        Route::post('transfer', [BankController::class, 'transfer']);
     });
 });
