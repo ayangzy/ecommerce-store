@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\BadgeController;
 use App\Http\Controllers\API\BankController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,14 @@ Route::prefix('v1')->group(function () {
     Route::prefix('auth')->name('auth.')->group(function () {
         Route::post('register', [RegisterController::class, 'store'])->name('store');
         Route::post('login', [LoginController::class, 'login'])->name('login');
+    });
+
+    Route::prefix('badges')->name('badge.')->group(function () {
+        Route::get('/', [BadgeController::class, 'index'])->name('index');
+        Route::post('/', [BadgeController::class, 'store'])->name('store');
+        Route::get('/{badge}', [BadgeController::class, 'show'])->name('show');
+        Route::patch('/{badge}', [BadgeController::class, 'update'])->name('update');
+        Route::delete('/{badge}', [BadgeController::class, 'destroy'])->name('destroy');
     });
 
     Route::group(['middleware' => ['auth:sanctum']], function () {
