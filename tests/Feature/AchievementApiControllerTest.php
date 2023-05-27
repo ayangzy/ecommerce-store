@@ -38,6 +38,7 @@ class AchievementApiControllerTest extends TestCase
                 'data' => [
                     'id' => $response['data']['id'],
                     'achievement_name' => $achievementData['achievement_name'],
+                    'required_count' => $achievementData['required_count'],
                     'achievement_group' => $achievementData['achievement_group'],
                     'description' => $achievementData['description'],
                     'created_at' => $response['data']['created_at'],
@@ -61,6 +62,7 @@ class AchievementApiControllerTest extends TestCase
                 'data' => [
                     'id' => $achievement->id,
                     'achievement_name' => $achievement->achievement_name,
+                    'required_count' => $achievement->required_count,
                     'achievement_group' => $achievement->achievement_group,
                     'description' => $achievement->description,
                     'created_at' => $achievement->created_at->format('Y-m-d h:i:s'),
@@ -89,6 +91,7 @@ class AchievementApiControllerTest extends TestCase
                 'data' => [
                     'id' => $achievement->id,
                     'achievement_name' => $updatedData['achievement_name'],
+                    'required_count' => $updatedData['required_count'],
                     'achievement_group' => $updatedData['achievement_group'],
                     'description' => $updatedData['description'],
                     'created_at' => $achievement->created_at->format('Y-m-d h:i:s'),
