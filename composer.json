@@ -46,6 +46,11 @@
         ],
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
+        ],
+        "test" : [
+            "rm -f database/database.sqlite",
+            "touch database/database.sqlite",
+            "./vendor/bin/phpunit || .\\vendor\\bin\\phpunit"
         ]
     },
     "extra": {
