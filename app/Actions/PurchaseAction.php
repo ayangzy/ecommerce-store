@@ -41,8 +41,8 @@ class PurchaseAction
             return new PurchaseResource($purchase);
         } catch (Exception $e) {
             DB::rollBack();
+            Log::error($e);
             throw new Exception("An error occured processing your request, please try again");
-            Logger($e);
         }
     }
 
