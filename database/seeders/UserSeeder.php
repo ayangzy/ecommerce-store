@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            User::firstOrCreate($user);
+            User::firstOrCreate(['email' => $user['email']], $user);
         }
     }
 }
