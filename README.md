@@ -1,66 +1,116 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Project Goal/Overview 
 
-## About Laravel
+The objective of this Laravel project is to enhance the marketing strategy of a local ecommerce store that has experienced a significant increase in its customer base. The store owner aims to efficiently segregate customers based on their purchase history.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+To achieve this, a feature has been developed that allows customers to unlock achievements for every purchase they make on the website. By accumulating specific sets of achievements, customers can earn badges. Each unlocked badge entitles the user to a cashback of 300 Naira.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+To facilitate this process, the project integrates with a local payment provider, enabling seamless cashback transactions for the customers. This integration ensures a smooth and automated process for awarding badges and initiating cashback rewards.
+## Installation & Usage
+<hr/>
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Downloading the Project
 
-## Learning Laravel
+It is ``Important`` to note that this project requires ```PHP 8.1``` and uses laravel ```version 10.10```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+You can clone the project by running the following command in your Git Bash:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+```bash
+git https://github.com/ayangzy/ecommerce-store.git
+```
+After cloning the project, navigate to the project directory and run the following command:
+```
+composer install
+```
+### Configure Environment
+To run the application you must configure the ```.env``` environment file with your database details set up. Use the following commmand to create .env file. 
+```
+cp .env.example .env
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```
 
-## Laravel Sponsors
+### Mail driver configuration
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+To ensure the correct functioning of the application, configure your mail driver in the .env file as follows:
+```
+MAIL_MAILER=smtp
+MAIL_HOST=sandbox.smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=
+MAIL_PASSWORD=
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="hello@example.com"
+MAIL_FROM_NAME="${APP_NAME}"
+```
 
-### Premium Partners
+Replace the username and password with your mail server credentials.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+The application uses ```redis``` as key-value store for quickly sending out mails. Make sure to set the following configuration in the .env file:
 
-## Contributing
+```
+QUEUE_CONNECTION=redis
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+The project also includes the integration of a local payment provider, to send out 300 Naira cashback whenever a user unlocks a new badge. Configure the Paystack variables in the .env file by adding your own secret and public key:
 
-## Code of Conduct
+```
+PAYSTACK_BASE_URL=https://api.paystack.co/
+PAYSTACK_SECRET_KEY=
+PAYSTACK_PUBLIC_KEY=
+```
+You can refer to ```.env.example``` for more detailed configuration options.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### Generating app key
+Run the following commands in the project directory to generate an app key:
+```
+php artisan key:generate
 
-## Security Vulnerabilities
+```
+After generating the app key, run the following command to run database migrations:
+```
+php artisan migrate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## Testing
+To run the test cases, type the following command in the project directory:
 
-## License
+``` bash
+composer test
+```
+or 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+``` bash
+php artisan test
+```
+
+## Seeding DB
+Seeders have been added to enable quick testing of the application. To seed the database, run the following command in your project terminal:
+```
+php artisan db:seed
+```
+
+
+### Serve your application
+To start the application, run the command ```php artisan serve``` in the project directory.
+
+## Running Queues
+To notify/send emails to users when they unlock an achievement and process/send out 300 Naira cashback when the user unlocks a badge, make sure to run the queue worker. Execute the following command in the project terminal:
+ To see this in action run
+``` 
+php artisan queue:work
+```
+
+For testing the endpoints, you can use the following login credentials. The user is required to log in to make a purchase
+``` 
+email:johndoe@gmail.com  password: password
+```
+or you can alternatively register to perform this operation as I have provided a registration endpoint:
+
+## Security
+
+If you discover any security related issues, please email ```ayangefelix8@gmail.com```
+## Credits
+
+- [Ayange Felix](https://github.com/ayangzy)
+
+
