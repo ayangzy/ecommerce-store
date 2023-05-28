@@ -106,6 +106,10 @@ email:johndoe@gmail.com  password: password
 ```
 or you can alternatively register to perform this operation as I have provided a registration endpoint:
 
+
+### API Documentation
+Please find the link to the API documentation below.
+https://documenter.getpostman.com/view/11101115/2s93m7XMne
 ## Security
 
 If you discover any security related issues, please email ```ayangefelix8@gmail.com```
