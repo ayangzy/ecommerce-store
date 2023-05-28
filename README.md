@@ -45,10 +45,10 @@ MAIL_FROM_NAME="${APP_NAME}"
 
 Replace the username and password with your mail server credentials.
 
-The application uses ```redis``` as key-value store for quickly sending out mails. Make sure to set the following configuration in the .env file:
+The application uses ```database`` queue driver,that   need a database table to hold the jobs. Make sure to set the following configuration in the .env file:
 
 ```
-QUEUE_CONNECTION=redis
+QUEUE_CONNECTION=database
 ```
 
 The project also includes the integration of a local payment provider, to send out 300 Naira cashback whenever a user unlocks a new badge. Configure the Paystack variables in the .env file by adding your own secret and public key:
