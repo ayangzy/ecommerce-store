@@ -2,7 +2,7 @@ name: Boom store
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   deploy:
