@@ -27,4 +27,4 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Deploy to AWS EC2
-        run: ssh -o StrictHostKeyChecking=no demo@54.163.88.65 "cd /home/demo/var/www/store && git pull && composer install --no-dev && php artisan migrate --force --seed && php artisan optimize"
+        run: ssh ${{ secrets.AWS_INSTANCE_IP }} "cd home/demo/var/www/store && git pull && composer install --no-dev && php artisan migrate --force --seed && php artisan optimize"
